@@ -7,53 +7,59 @@
     <title>Document</title>
 
     <style>
-    #heroID{
-        float:left;
-        font: 30px;
-        transform: rotate(78deg);
+    p{
+        font-size: 18px;
+        background-color: white;
     }
-    h1{
-        background-color: red;
+    div p{
+        background-color: lightgray;
     }
-    .fright{
-        float: right;
-    }
-    nav.green{
-        background-color: lime;
-    }
-
     .green{
         background-color: green;
-        color:white;
     }
-    .whitefont{
-        color:white;
-
+    .open .red{
+        background-color: red;
     }
-    div h1{
+    .open.red{
         background-color: pink;
     }
-    .tiny{
-        font-size: 50px;
+    
+    .red{
+        background-color: red;
+    }
+    .green{
+        background-color: green;
+    }
+    body div p.trybrown{
+        background-color:brown;
+    }
+    body div .red.brown{
+        background-color:brown;
+    }
+    #heroID{
+        background-color: yellow;
     }
 
     </style>
 
 </head>
 <body>
-    <nav class="green">This is an element and a class!  11 Points</nav> 
-    <h1 class="green">Green has 10 points in the class! H1 only has 1</h1>
-
-    <div>
-        <h1 class="green">Here!</h1>
-    </div>
+    <p>Specificity, what is it?</p>
+    <p>1 - A CSS Rule assigned to a bare element Gets 1 Point.</p>
+    <div><p>2 - Every Additional Element adds 1 Point.  This is DIV P.  Adding 2 points in total.  Note: Styling features that are not over ridden are kept!  The Font-Size remains the same as we are only overriding the color</p></div>
     
-    <h1 class="whitefont">HI!</h1>
-    <h1>HI!</h1>
-    <br>
-    <h1 class="fright whitefont">HI!</h1>
-    <br>
-    <h1 id="heroID" class="fright whitefont tiny">HI!</h1>
-    <h1>HI!</h1>
+    <p class="green">10 - Classes add 10 points to specificity.  So while this is also a p element, the class will over-ride the p.</p>
+    <p class="green red">10 - If 2 rules have the same points, the latter in CSS will apply.</p>
+    
+    <div class="open"><h4 class="red">20 - Calling Elements within Elements .open .red</h4></div>
+    <h4 class="open red">20 - Adding Rules to elements .open.red</h4>
+    
+    <div class="open"><p class="red trybrown">20 - We want this to be brown.  But our TryBrown CSS Rule is only has a strength of 13 Points (body div p.trybrown)<br>While the open red rule is worth 20! </h4></div>
+    <div class="open"><p class="red brown">23 - This is worth 23 points(body div p.red.trybrown)</p></div>
+    <div class="open"><p id="heroID" class="red brown">100 - ID's Cut through a lot of specificity!  This beats the 23 points with a staggering 100! WOW!</p></div>
+    
+    <p id="heroID" style="background-color: red">1000 - But inline styling beats absolutely everything!</p>
+
+
 </body>
 </html>
